@@ -1,0 +1,35 @@
+label {
+  display: block;
+  font-size: 0.8em;
+  margin: 10px;
+  color: rgb(77, 80, 85);
+}
+
+input {
+  display: block;
+  padding: 13px;
+  margin: 10px;
+  width: 25em;
+}
+
+textarea {
+  display: block;
+  padding: 10px;
+  margin: 10px;
+  width: 25em;
+}
+
+.btn {
+  padding: 15px;
+  color: white;
+  background-color: rgb(0, 162, 255);
+  border: none;
+  margin: 10px;
+  border-radius: 8px;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: rgb(7, 133, 206);
+}

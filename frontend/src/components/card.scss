@@ -1,0 +1,91 @@
+.container {
+  display: flex;
+  background-color: white;
+  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  min-height: 80vh;
+  margin-top: 60px;
+  width: 80%;
+  margin: 60px auto 0 auto;
+  border: 1px solid rgba(77, 80, 85, 0.1);
+
+  .card_content {
+    width: 28%;
+    border-right: 1px solid rgba(77, 80, 85, 0.1);
+    padding: 30px;
+
+    .back {
+      color: rgb(0, 162, 255);
+      margin: 0;
+      cursor: pointer;
+
+      &_svg {
+        width: 50px;
+        height: auto;
+
+        &:hover {
+          color: white;
+          background-color: rgb(0, 162, 255);
+        }
+      }
+    }
+
+    .desc {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgb(148, 150, 153);
+      padding-top: 15px;
+    }
+
+    h4,
+    h3 {
+      margin: 0;
+    }
+
+    h3 {
+      font-size: 1.6em;
+      color: rgb(77, 80, 85);
+    }
+
+    &-title {
+      color: rgb(148, 150, 153);
+      padding-bottom: 8px;
+    }
+  }
+
+  .calender {
+    padding: 30px;
+
+    &_title {
+      color: rgb(77, 80, 85);
+      padding-bottom: 20px;
+      font-size: 1.4em;
+    }
+
+    .datetime {
+      display: flex;
+      gap: 20px;
+
+      .time_container div {
+        border: 1px solid rgba(0, 162, 255, 0.5);
+        padding: 10px 10px;
+        margin: 5px auto;
+        text-align: center;
+        border-radius: 5px;
+        color: rgb(0, 162, 255);
+        cursor: pointer;
+
+        &:hover {
+          color: white;
+          background-color: rgb(0, 162, 255);
+        }
+      }
+
+      &_title {
+        font-weight: lighter;
+        color: rgb(77, 80, 85);
+      }
+    }
+  }
+}
