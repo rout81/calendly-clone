@@ -2,7 +2,11 @@ const express = require("express");
 const fs = require("fs");
 const nodemailer = require("nodemailer");
 const ics = require("ics");
+const dotenv = require("dotenv");
 const cors = require("cors");
+const path = require("path");
+
+dotenv.config();
 
 const app = express();
 app.use(express.json());
@@ -41,13 +45,13 @@ app.post("/api", (req, res) => {
   });
 
   const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
+    host: process.env.SMTP,
     port: 587,
     secure: false,
     requireTLS: true,
     auth: {
       user: "satyaranjanrout81@gmail.com",
-      pass: "siba-9658",
+      pass: process.env.PASS,
     },
   });
 
@@ -56,7 +60,12 @@ app.post("/api", (req, res) => {
     to: req.body.data.email,
     subject: "Future Blink Invitation",
     text: req.body.data.textArea,
-    attachments: [{ filename: "event.ics", path: "./backend/event.ics" }],
+    attachments: [
+      {
+        filename: "event.ics",
+        path: path.join(__dirname, "/event.ics"),
+      },
+    ],
   };
 
   transporter.sendMail(mailObj, function (err, info) {
@@ -64,7 +73,20 @@ app.post("/api", (req, res) => {
     fs.rmSync("./backend/event.ics");
   });
 
-  res.send("done");
+  res.json({
+    status: "success",
+    mailTo: req.body.data.email,
+  });
 });
 
-app.listen(5000, () => console.log("server started on port 5000"));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("frontend/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+  });
+}
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(5000, () => console.log(`server started on port ${PORT}`));

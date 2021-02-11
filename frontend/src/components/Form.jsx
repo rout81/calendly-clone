@@ -14,6 +14,8 @@ const Form = ({ value, confirmed, innerText }) => {
     website: "",
   });
 
+  const [resData, setResData] = useState("");
+
   const r = /\d+/;
   const hour = Number(innerText.match(r)[0]);
 
@@ -31,7 +33,7 @@ const Form = ({ value, confirmed, innerText }) => {
     e.preventDefault();
     axios
       .post("http://localhost:5000/api", { data, start })
-      .then((response) => console.log(response.data));
+      .then((response) => setResData(response.data));
     // fetch("http://localhost:5000", { mode: "cors" })
     //   .then((response) => response.json())
     //   .then((data) => console.log(data));
@@ -89,6 +91,9 @@ const Form = ({ value, confirmed, innerText }) => {
       <button onClick={submitHandler} className="btn">
         Schedule Event
       </button>
+      {resData.status === "success" ? (
+        <div style={{ color: "green" }}>Schedule sent to {resData.mailTo}</div>
+      ) : null}
     </form>
   );
 };
