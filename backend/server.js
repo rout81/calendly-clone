@@ -45,19 +45,16 @@ app.post("/api", (req, res) => {
   });
 
   const transporter = nodemailer.createTransport({
-    host: process.env.SMTP,
-    port: 587,
-    secure: false,
-    requireTLS: true,
+    host: "smtp.gmail.com",
     service: "Gmail",
     auth: {
-      user: process.env.USER,
-      pass: process.env.PASS,
+      user: "jacksky9658@gmail.com",
+      pass: "kttvxzitpeqiejnu",
     },
   });
 
   const mailObj = {
-    from: "satyaranjanrout81@gmail.com",
+    from: "jacksky9658@gmail.com",
     to: req.body.data.email,
     subject: "Future Blink Invitation",
     text: req.body.data.textArea,
